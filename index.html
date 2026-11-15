@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="sr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#10100f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="SAX Kalendar">
+  <meta name="description" content="SAX 'N' GROOVE — pregled termina za članove tima">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta http-equiv="Referrer-Policy" content="no-referrer">
+  <title>SAX 'N' GROOVE — Kalendar tima</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="icon" type="image/png" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="header">
+      <img class="logo" src="logo.png" alt="SAX 'N' GROOVE logo">
+      <h1>TEAM CALENDAR</h1>
+      <p class="subtitle">Pregled nastupa za članove tima · Samo čitanje</p>
+    </header>
+
+    <section id="setup" class="setup" hidden aria-labelledby="setup-title">
+      <div class="section-icon">⚙</div>
+      <h2 id="setup-title">Prvo povezivanje</h2>
+      <p>Prilikom prvog otvaranja nalepi <strong>postojeći Google LIVE link kalendara</strong> koji ti je administrator dostavio. Posle povezivanja dovoljno je da otvoriš ikonicu kalendara.</p>
+      <form id="setup-form">
+        <label for="existing-link">Link LIVE kalendara (sa ključem za pregled)</label>
+        <textarea id="existing-link" rows="3" spellcheck="false" autocomplete="off" placeholder="https://script.google.com/macros/s/.../exec?godina=2026&k=..."></textarea>
+        <button type="submit" class="button primary">Poveži kalendar</button>
+      </form>
+      <div id="setup-error" role="alert" class="error" hidden></div>
+      <p class="hint">Pristupni link čuva se samo u ovom pregledaču na ovom uređaju. Ne unosi administratorski ključ.</p>
+    </section>
+
+    <section id="calendar-view" hidden>
+      <div class="toolbar">
+        <div class="year-switch" role="group" aria-label="Godina">
+          <button type="button" class="year-button" data-year="2026" aria-pressed="false">2026</button>
+          <button type="button" class="year-button" data-year="2027" aria-pressed="false">2027</button>
+          <button type="button" class="year-button" data-year="2028" aria-pressed="false">2028</button>
+        </div>
+        <div class="tools"><button id="refresh" type="button" class="button secondary">↻ Osveži</button><button id="connection" type="button" class="button ghost">Podešavanja</button></div>
+      </div>
+      <div id="sync-status" class="sync-status" role="status" aria-live="polite">Učitavanje…</div>
+      <div class="legend">
+        <span><i style="background:#e56774"></i>Svadbe</span>
+        <span><i style="background:#dfbb48"></i>Rođendani</span>
+        <span><i style="background:#dedad0"></i>Žurke</span>
+        <span><i style="background:#b08df2"></i>Korporativne zabave</span>
+      </div>
+      <h2 class="section-head">Svi meseci <span id="year-heading">2026.</span></h2>
+      <div id="months" class="months" aria-label="Izaberi mesec"></div>
+      <section class="month-panel" id="month-panel" aria-labelledby="month-name">
+        <div class="month-head">
+          <button id="prev-month" type="button" class="arrow-button" aria-label="Prethodni mesec">‹</button>
+          <h2 id="month-name">—</h2>
+          <button id="next-month" type="button" class="arrow-button" aria-label="Sledeći mesec">›</button>
+        </div>
+        <div class="weekdays" aria-hidden="true"><span>Pon</span><span>Uto</span><span>Sre</span><span>Čet</span><span>Pet</span><span>Sub</span><span>Ned</span></div>
+        <div id="days" class="days"></div>
+        <div id="day-details" class="day-details"></div>
+      </section>
+    </section>
+    <footer>SAX 'N' GROOVE · Team Calendar · Finansije nisu dostupne članovima.</footer>
+  </main>
+</body>
+</html>
